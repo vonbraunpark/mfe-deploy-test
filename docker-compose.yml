@@ -4,7 +4,7 @@ services:
   mfe-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-local
     ports:
       - "80:80"
     container_name: mfe-app
