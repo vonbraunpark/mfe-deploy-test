@@ -1,22 +1,6 @@
 FROM node:20 AS builder
 
 WORKDIR /app
-#COPY . .
-#
-#RUN npm install -g pnpm \
-#  && pnpm install \
-#  && pnpm run build
-#
-#FROM nginx:alpine
-#
-## nginx 설정 복사
-#COPY docker/nginx.conf /etc/nginx/nginx.conf
-#
-## dist 전체 복사
-#COPY --from=builder /app/dist /usr/share/nginx/html
-#
-#EXPOSE 80
-#CMD ["nginx", "-g", "daemon off;"]
 
 # 소스 전체 복사
 COPY . .
