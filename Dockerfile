@@ -15,7 +15,7 @@ FROM nginx:alpine
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
 # 각 앱 dist를 nginx 경로에 맞게 복사
-COPY --from=builder /app/html-container/dist /usr/share/nginx/html
+COPY --from=builder /app/html-container/dist /usr/share/nginx/html/html-container
 COPY --from=builder /app/navigation-bar-app/dist /usr/share/nginx/html/navigation-bar-app
 COPY --from=builder /app/vue-board-app/dist /usr/share/nginx/html/vue-board
 COPY --from=builder /app/dice-game-app/dist /usr/share/nginx/html/dice-game-app
