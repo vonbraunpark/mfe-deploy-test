@@ -1,0 +1,71 @@
+name: CD (Continuous Deploy)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      triggered_by:
+        description: 'Who triggered the deployment?'
+        required: false
+        default: 'Manual Trigger'
+
+env:
+  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/mfe-deploy-test:latest
+
+jobs:
+  build:
+    name: build-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create authentication-app .env for Continuous Deploy
+        run: |
+          cd authentication-app
+          echo "${{ secrets.AUTHENTICATION_ENV_PRODUCTION }}" > .env
+
+      - name: Create cart-app .env for Continuous Deploy
+        run: |
+          cd ../cart-app
+          echo "${{ secrets.CART_ENV_PRODUCTION }}" > .env
+
+      - name: Create dice-game-app .env for Continuous Deploy
+        run: |
+          cd ../dice-game-app
+          echo "${{ secrets.DICE_GAME_ENV_PRODUCTION }}" > .env
+
+      - name: Create game-chip-app .env for Continuous Deploy
+        run: |
+          cd ../game-chip-app
+          echo "${{ secrets.GAME_CHIP_ENV_PRODUCTION }}" > .env
+
+      - name: Create html-container .env for Continuous Deploy
+        run: |
+          cd ../html-container
+          echo "${{ secrets.HTML_CONTAINER_ENV_PRODUCTION }}" > .env
+
+      - name: Create laptop-app .env for Continuous Deploy
+        run: |
+          cd ../laptop-app
+          echo "${{ secrets.LAPTOP_ENV_PRODUCTION }}" > .env
+
+      - name: Create navigation-bar-app .env for Continuous Deploy
+        run: |
+          cd ../navigation-bar-app
+          echo "${{ secrets.NAVIGATION_BAR_ENV_PRODUCTION }}" > .env
+
+      - name: Create vue-board-app .env for Continuous Deploy
+        run: |
+          cd ../vue-board-app
+          echo "${{ secrets.VUE_BOARD_ENV_PRODUCTION }}" > .env
+
+      # - name: Build and Push Docker Image
+      #   run: |
+      #     echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      #     docker buildx create --name builder --use
+      #     docker buildx build --platform linux/amd64,linux/arm64 \
+      #       -t ${{ env.DOCKER_IMAGE }} --push .
+      #     docker logout
