@@ -29,37 +29,37 @@ jobs:
 
       - name: Create cart-app .env for Continuous Deploy
         run: |
-          cd ../cart-app
+          cd cart-app
           echo "${{ secrets.CART_ENV_PRODUCTION }}" > .env
 
       - name: Create dice-game-app .env for Continuous Deploy
         run: |
-          cd ../dice-game-app
+          cd dice-game-app
           echo "${{ secrets.DICE_GAME_ENV_PRODUCTION }}" > .env
 
       - name: Create game-chip-app .env for Continuous Deploy
         run: |
-          cd ../game-chip-app
+          cd game-chip-app
           echo "${{ secrets.GAME_CHIP_ENV_PRODUCTION }}" > .env
 
       - name: Create html-container .env for Continuous Deploy
         run: |
-          cd ../html-container
+          cd html-container
           echo "${{ secrets.HTML_CONTAINER_ENV_PRODUCTION }}" > .env
 
       - name: Create laptop-app .env for Continuous Deploy
         run: |
-          cd ../laptop-app
+          cd laptop-app
           echo "${{ secrets.LAPTOP_ENV_PRODUCTION }}" > .env
 
       - name: Create navigation-bar-app .env for Continuous Deploy
         run: |
-          cd ../navigation-bar-app
+          cd navigation-bar-app
           echo "${{ secrets.NAVIGATION_BAR_ENV_PRODUCTION }}" > .env
 
       - name: Create vue-board-app .env for Continuous Deploy
         run: |
-          cd ../vue-board-app
+          cd vue-board-app
           echo "${{ secrets.VUE_BOARD_ENV_PRODUCTION }}" > .env
 
       # - name: Build and Push Docker Image
