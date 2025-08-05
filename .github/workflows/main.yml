@@ -69,3 +69,24 @@ jobs:
           docker buildx build --platform linux/amd64,linux/arm64 \
             -t ${{ env.DOCKER_IMAGE }} --push .
           docker logout
+
+  deploy:
+    name: Deploy to Production
+    needs: build
+    runs-on: [ self-hosted, deploy-micro-frontend ]
+    steps:
+      - name: Pull and Deploy Container
+        run: |
+          echo "Starting Micro Frontend Production Deployment"
+  
+          cd /home/ec2-user/micro-frontend
+          docker-compose down
+  
+          echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker pull ${{ env.DOCKER_IMAGE }}
+
+          docker image prune -f
+          docker logout
+  
+          docker-compose up -d --remove-orphans
+          echo "Deployment complete."
