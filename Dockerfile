@@ -22,6 +22,7 @@ COPY --from=builder /app/dice-game-app/dist /usr/share/nginx/html/dice-game-app
 COPY --from=builder /app/authentication-app/dist /usr/share/nginx/html/authentication-app
 COPY --from=builder /app/game-chip-app/dist /usr/share/nginx/html/game-chip-app
 COPY --from=builder /app/cart-app/dist /usr/share/nginx/html/cart-app
+COPY --from=builder /app/laptop-app/dist /usr/share/nginx/html/laptop-app
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
