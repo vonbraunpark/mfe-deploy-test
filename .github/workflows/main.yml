@@ -62,10 +62,10 @@ jobs:
           cd vue-board-app
           echo "${{ secrets.VUE_BOARD_ENV_PRODUCTION }}" > .env
 
-      # - name: Build and Push Docker Image
-      #   run: |
-      #     echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      #     docker buildx create --name builder --use
-      #     docker buildx build --platform linux/amd64,linux/arm64 \
-      #       -t ${{ env.DOCKER_IMAGE }} --push .
-      #     docker logout
+      - name: Build and Push Docker Image
+        run: |
+          echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker buildx create --name builder --use
+          docker buildx build --platform linux/amd64,linux/arm64 \
+            -t ${{ env.DOCKER_IMAGE }} --push .
+          docker logout
