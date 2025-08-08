@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  mfe-app:
+    image: ghcr.io/${GITHUB_ACTOR}/mfe-deploy-test:latest
+    container_name: micro-frontend-deploy
+    restart: always
+    networks:
+      - micro-front-app
+
+  nginx:
+    image: nginx:latest
+    container_name: mfe-deploy-nginx
+    restart: unless-stopped
+    volumes:
+      - /home/ec2-user/micro-frontend/conf:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+    networks:
+      - micro-front-app
+
+networks:
+  micro-front-app:
+    external: true

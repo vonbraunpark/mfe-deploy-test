@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
+  "packages": [
+    "html-container",
+    "navigation-bar-app",
+    "vue-board-app",
+    "dice-game-app",
+    "authentication-app",
+    "game-chip-app",
+    "cart-app",
+    "laptop-app"
+  ]
+}
